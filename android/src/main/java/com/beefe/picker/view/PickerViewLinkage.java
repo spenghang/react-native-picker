@@ -91,7 +91,11 @@ public class PickerViewLinkage extends LinearLayout {
     private void checkItems(LoopView loopView, ArrayList<String> list) {
         if (list != null && list.size() > 0) {
             loopView.setItems(list);
-            loopView.setSelectedPosition(0);
+            int selectedIndex = loopView.getSelectedIndex();
+            if(selectedIndex >= list.size()){
+                selectedIndex = list.size() - 1;
+            }
+            loopView.setSelectedPosition(selectedIndex);
         }
     }
 
@@ -227,7 +231,7 @@ public class PickerViewLinkage extends LinearLayout {
 
 
                     ReadableArray ar = data.get(index).getArray(item);
-                    ReadableMap childMap = ar.getMap(0);
+                    ReadableMap childMap = ar.getMap(loopViewTwo.getSelectedIndex());
                     String key = childMap.keySetIterator().nextKey();
                     ReadableArray sunArray = childMap.getArray(key);
                     threeList.clear();
@@ -305,7 +309,7 @@ public class PickerViewLinkage extends LinearLayout {
                     if(selectTwoIndex >= arrTwoSize){
                         selectTwoIndex = arrTwoSize - 1;
                     }
-                    
+
                     returnData = new ReturnData();
                     returnData.setItem(oneList.get(selectOneIndex));
                     returnData.setIndex(loopViewOne.getSelectedIndex());

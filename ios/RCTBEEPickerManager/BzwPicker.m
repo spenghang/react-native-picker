@@ -64,7 +64,7 @@
     [self.rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10.0)];
     [self.rightBtn setTitle:self.rightStr forState:UIControlStateNormal];
     [self.rightBtn setTitleColor:[self colorWith:rightbtnbgColor] forState:UIControlStateNormal];
-    [self.rightBtn addTarget:self action:@selector(cfirmAction) forControlEvents:UIControlEventTouchUpInside];  
+    [self.rightBtn addTarget:self action:@selector(cfirmAction) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:self.rightBtn];
     
     UILabel *cenLabel=[[UILabel alloc]initWithFrame:CGRectMake(90, 5, SCREEN_WIDTH-180, 30)];
@@ -73,7 +73,7 @@
     cenLabel.font = [UIFont fontWithName:_pickerFontFamily size:[_pickerToolBarFontSize integerValue]];
     [cenLabel setTextColor:[self colorWith:centerbtnColor]];
     [view addSubview:cenLabel];
-
+    
     self.pick = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 40, self.frame.size.width, self.frame.size.height - 40)];
     self.pick.delegate = self;
     self.pick.dataSource = self;
@@ -340,8 +340,9 @@
                 }
                 if (self.cityArray.count > 0)
                 {
+                    NSInteger setline1=[_pick selectedRowInComponent:1];
                     
-                    self.townArray=[[self.selectthreeAry objectAtIndex:0]objectForKey:[self.cityArray objectAtIndex:0]];
+                    self.townArray=[[self.selectthreeAry objectAtIndex:setline1] objectForKey: [self.cityArray objectAtIndex:setline1]];
                     
                 }
                 else
@@ -349,8 +350,8 @@
                     self.townArray = nil;
                 }
                 [pickerView reloadAllComponents];
-                [pickerView selectRow:0 inComponent:1 animated:YES];
-                [pickerView selectRow:0 inComponent:2 animated:YES];
+                //                [pickerView selectRow:0 inComponent:1 animated:YES];
+                //                [pickerView selectRow:0 inComponent:2 animated:YES];
                 
             }
             
@@ -367,7 +368,7 @@
                 }
                 
                 [pickerView reloadAllComponents];
-                [pickerView selectRow:0 inComponent:2 animated:YES];
+                //                [pickerView selectRow:0 inComponent:2 animated:YES];
                 
             }
             
@@ -626,7 +627,7 @@
         [dic setValue:@"confirm" forKey:@"type"];
         NSMutableArray *arry=[[NSMutableArray alloc]init];
         [dic setValue:[self getselectIndexArry] forKey:@"selectedIndex"];
-//        [dic setValue:arry forKey:@"selectedIndex"];
+        //        [dic setValue:arry forKey:@"selectedIndex"];
         
         self.bolock(dic);
         
