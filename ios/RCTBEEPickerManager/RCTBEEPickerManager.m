@@ -116,11 +116,11 @@ RCT_EXPORT_METHOD(hide){
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:.3 animations:^{
                 [_pick setFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, self.height)];
+            } completion:^(BOOL finished) {
+                self.pick.hidden=YES;
             }];
         });
     }
-
-    self.pick.hidden=YES;
 
     return;
 }
